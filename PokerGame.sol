@@ -14,3 +14,20 @@ interface IERC20 {  // interface same like header in C.
     
     function transfer(address to, uint256 amount) external returns (bool); // send Money from "this contract" to "to"
 }
+
+
+contract poker is Ownable {  // why onable . because use for onlyonwer.
+
+    ERC20 public Atomotos;
+    address public payableAddress; // owner wallet
+
+    constructor(address _atomotos, address PokerNFT) {
+        Atomotos = IERC20(_atomotos);
+        payableAddress = msg.sender;
+    }
+
+    function transferAtomotos(uint256 _address) public {
+        Atomotos.transferFrom(msg.sender, payableAddress, amount); // msg.sender is user who run that function
+        // transfer is send.. transferFrom is give.
+    }
+}
